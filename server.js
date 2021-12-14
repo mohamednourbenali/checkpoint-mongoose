@@ -38,7 +38,31 @@ await Person.findOne({favoriteFoods:["makrouna"]}).exec();
     // find by id
 await Person.findById("619b748e18c3536d94aee64c").exec();
 
+    // find and update
+await Person.findOneAndUpdate({
+    name:'mohamed nour'
+},{age : 20},{new:true}
+    .then(doc=>{console.log(dod);}))
+    .catch((error)=>{console.log(error)});
 
+    // findByIdAndRemove
+await Person.findByIdAndRemove('619b748e18c3536d94aee64c',function (err, docs) {
+    if (err){
+        console.log(err)
+    }
+    else{
+        console.log("Deleted : ", docs);
+    }
+});
+
+    // Remove
+await Person.remove({name : "Mary"},function (err, result) {
+    if (err){
+        console.log(err)
+    }else{
+        console.log("Result :", result) 
+    }
+});
 
 
 app.listen(PORT,console.log(`server is running on port ${PORT}`));
